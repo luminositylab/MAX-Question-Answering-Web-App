@@ -53,7 +53,7 @@ def numbered_print(strings):
 # state 1
 def get_topic(model_endpoint, topic, titles):
     if topic.lower() == "stop":
-        return "Thank You for using QnAit, Hope your questions were answered!", 5, {}
+        return "Okay, how else can I help?", 5, {}
 
     # hardcoded fun :)
     if topic == "What is the meaning of life?":
@@ -61,7 +61,7 @@ def get_topic(model_endpoint, topic, titles):
 
     matches = get_close_matches(topic.title(), titles.keys())
     if len(matches) == 0:
-        return "I couldn't find that topic. Can you try rephrasing that or being more specific?", 1, {}
+        return "I couldn't find that topic. Can you try rephrasing that or being more specific? You can type 'Stop' to end topic search.", 1, {}
     else:
 
         return "Ok, which of the following best matches the topic of your question?\n" + numbered_print(matches), 2, matches
@@ -71,7 +71,7 @@ def get_topic(model_endpoint, topic, titles):
 def narrow(model_endpoint, topic, titles):
     matches = get_close_matches(topic.title(), titles.keys())
     if len(matches) == 0:
-        return "I couldn't find that topic. Can you try rephrasing that or being more specific?", 1, {}
+        return "I couldn't find that topic. Can you try rephrasing that or being more specific? You can type 'Stop' to end topic search.", 1, {}
     else:
         return "Ok, which of the following best matches the topic of your question?\n" + numbered_print(matches), 2, matches
 
@@ -91,10 +91,9 @@ def ask(model_endpoint, question, titles):
     json_data = {"paragraphs": [{"context": titles[choice][1],
                                  "questions": [question]}]}
     r = requests.post(url=model_endpoint, json=json_data).json()
-    return r["predictions"][0][0] + "\n\nTo stop this session, type 'Stop'. \n\
-              If you are curious about another topic, reply with the topic.", 1, {}
+    return r["predictions"][0][0] + "\n\nIf you would like to search another topic, type 'Topic'.", 1, {}
 
 
 # state 5
 def end(model_endpoint, topic, titles):
-    return "restarting app...\n\n" + get_opening_message(), 1, {}
+    return "Okay, how else can I help?", 5, {}
