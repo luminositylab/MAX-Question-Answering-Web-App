@@ -15,6 +15,7 @@
 #
 
 from flask import Flask, render_template, request, jsonify
+from flask_cors import cross_origin
 from chatbot import get_opening_message, get_choice, get_topic, match, narrow, ask, end
 import json
 
@@ -31,7 +32,7 @@ states = {
 
 textbook_data = None
 titles = None
-model_endpoint = "http://0.0.0.0:5000/model/predict"
+model_endpoint = "http://answering:5000/model/predict"
 
 
 def flattened_titles(data):
@@ -69,6 +70,7 @@ def get_subtitles(data, titles, title):
 
 
 @app.route("/", methods=["POST", "GET", "HEAD"])
+@cross_origin()
 def chat():
     if request.method == "POST":
         '''Process an ongoing conversation.'''

@@ -1,0 +1,30 @@
+version: '3'
+
+networks:
+    backend:
+
+services:
+    service:
+        build: .
+        networks:
+            - backend
+
+    answering:
+        image: codait/max-question-answering
+        ports:
+            - 5000:5000
+        networks:
+            - backend
+
+    web:
+        image: nginx
+        ports:
+            - 8000:8080
+        volumes:
+            - ./nginx:/etc/nginx
+        depends_on:
+            - service
+        networks:
+            backend:
+                aliases:
+                    - local.rasa-lti.projects.theluminositylab.com
