@@ -18,6 +18,9 @@ spec:
       - image: gcr.io/wpc-chatbot/max-question-answering-web-app:latest
         imagePullPolicy: IfNotPresent
         name: max-question-web
+        env:
+        - name: ANSWER_URL
+          value: "https://rasa-lti.projects.theluminositylab.com/model/predict"
         ports:
         - containerPort: 8000
           protocol: TCP

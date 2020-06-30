@@ -18,6 +18,7 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import cross_origin
 from chatbot import get_opening_message, get_choice, get_topic, match, narrow, ask, end
 import json
+import os
 
 app = Flask(__name__)
 
@@ -32,8 +33,7 @@ states = {
 
 textbook_data = None
 titles = None
-model_endpoint = "http://answering:5000/model/predict"
-
+model_endpoint = os.getenv('ANSWER_URL', "http://answering:5000/model/predict")
 
 def flattened_titles(data):
     '''This function flattens textbook data for searching and matching user input to sections of the textbook.'''
@@ -69,7 +69,7 @@ def get_subtitles(data, titles, title):
         return final
 
 
-@app.route("/", methods=["POST", "GET", "HEAD"])
+@app.route("/questions/chat", methods=["POST", "GET", "HEAD"])
 @cross_origin()
 def chat():
     if request.method == "POST":
