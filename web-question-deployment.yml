@@ -21,3 +21,11 @@ spec:
         ports:
         - containerPort: 8000
           protocol: TCP
+          name: question-port
+        livenessProbe:
+          httpGet:
+            path: /questions/status
+            port: question-port
+          failureThreshold: 10
+          periodSeconds: 10
+          timeoutSeconds: 30

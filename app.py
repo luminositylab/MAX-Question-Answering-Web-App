@@ -70,7 +70,6 @@ def get_subtitles(data, titles, title):
 
 
 @app.route("/questions/chat", methods=["POST", "GET", "HEAD"])
-@app.route("/", methods=["POST", "GET", "HEAD"])
 @cross_origin()
 def chat():
     if request.method == "POST":
@@ -94,7 +93,7 @@ def chat():
         '''Start a conversation.'''
         return render_template("index.html", display_text=get_opening_message(), state=1)
 
-@app.route("/status/max-question", methods=["GET"])
+@app.route("/questions/status", methods=["GET"])
 @cross_origin()
 def status():
     return jsonify({"response": "ok", "model_endpoint": model_endpoint})
