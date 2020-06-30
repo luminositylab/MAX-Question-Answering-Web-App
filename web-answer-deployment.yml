@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: max-answering-web
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: max-answering-web
+  template:
+    metadata:
+      labels:
+        run: max-answering-web
+    spec:
+      containers:
+      - image: codait/max-question-answering-web-app:latest
+        imagePullPolicy: IfNotPresent
+        name: max-answering-web
+        ports:
+        - containerPort: 5000
+          protocol: TCP

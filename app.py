@@ -93,6 +93,10 @@ def chat():
         '''Start a conversation.'''
         return render_template("index.html", display_text=get_opening_message(), state=1)
 
+@app.route("/status/max-question", methods=["GET"])
+@cross_origin()
+def status():
+    return jsonify({"response": {"ok"}})
 
 if __name__ == "__main__":
     # Load the textbook

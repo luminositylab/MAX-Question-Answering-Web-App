@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: max-question-web
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: max-question-web
+  template:
+    metadata:
+      labels:
+        run: max-question-web
+    spec:
+      containers:
+      - image: gcr.io/wpc-chatbot/max-question-answering-web-app:latest
+        imagePullPolicy: IfNotPresent
+        name: max-question-web
+        ports:
+        - containerPort: 8000
+          protocol: TCP
