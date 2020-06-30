@@ -33,7 +33,7 @@ states = {
 
 textbook_data = None
 titles = None
-model_endpoint = os.getenv('ANSWER_URL', "http://answering:5000/model/predict")
+model_endpoint = 'http://' + os.getenv('MAX_WEB_SERVICE_HOST', "answering") + ':' + os.getenv('MAX_WEB_PORT_83_TCP_PORT', '5000') + '/model/predict'
 
 def flattened_titles(data):
     '''This function flattens textbook data for searching and matching user input to sections of the textbook.'''
@@ -96,7 +96,7 @@ def chat():
 @app.route("/status/max-question", methods=["GET"])
 @cross_origin()
 def status():
-    return jsonify({"response": "ok"})
+    return jsonify({"response": "ok", "model_endpoint": model_endpoint})
 
 if __name__ == "__main__":
     # Load the textbook
