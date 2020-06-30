@@ -70,6 +70,7 @@ def get_subtitles(data, titles, title):
 
 
 @app.route("/questions/chat", methods=["POST", "GET", "HEAD"])
+@app.route("/", methods=["POST", "GET", "HEAD"])
 @cross_origin()
 def chat():
     if request.method == "POST":
