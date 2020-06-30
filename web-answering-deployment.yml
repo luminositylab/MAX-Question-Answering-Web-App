@@ -15,7 +15,7 @@ spec:
         alttag: max-answering-web
     spec:
       containers:
-      - image: codait/max-question-answering-web-app:latest
+      - image: codait/max-question-answering:latest
         imagePullPolicy: IfNotPresent
         name: max-answering-web
         ports:

@@ -18,7 +18,7 @@ FROM codait/max-base:v1.3.2
 
 COPY . /app
 WORKDIR /app
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update && apt-get install -y curl iputils-ping
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 EXPOSE 8000
