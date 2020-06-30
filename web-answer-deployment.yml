@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         run: max-answering-web
+        group: max-web
     spec:
       containers:
       - image: codait/max-question-answering-web-app:latest

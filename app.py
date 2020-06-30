@@ -96,7 +96,7 @@ def chat():
 @app.route("/status/max-question", methods=["GET"])
 @cross_origin()
 def status():
-    return jsonify({"response": {"ok"}})
+    return jsonify({"response": "ok"})
 
 if __name__ == "__main__":
     # Load the textbook

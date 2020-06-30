@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         run: max-question-web
+        group: max-web
     spec:
       containers:
       - image: gcr.io/wpc-chatbot/max-question-answering-web-app:latest
