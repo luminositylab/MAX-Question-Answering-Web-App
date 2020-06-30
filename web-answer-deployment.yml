@@ -6,12 +6,13 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: max-answering-web
+      alttag: max-answering-web
+      run: max-web
   template:
     metadata:
       labels:
-        run: max-answering-web
-        group: max-web
+        run: max-web
+        alttag: max-answering-web
     spec:
       containers:
       - image: codait/max-question-answering-web-app:latest

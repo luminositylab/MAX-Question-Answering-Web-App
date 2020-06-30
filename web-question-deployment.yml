@@ -6,12 +6,13 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: max-question-web
+      alttag: max-question-web
+      run: max-web
   template:
     metadata:
       labels:
-        run: max-question-web
-        group: max-web
+        run: max-web
+        alttag: max-question-web
     spec:
       containers:
       - image: gcr.io/wpc-chatbot/max-question-answering-web-app:latest

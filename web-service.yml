@@ -15,4 +15,4 @@ spec:
     targetPort: 8000
     name: max-question-web
   selector:
-    group: max-web
+    run: max-web
